@@ -1,7 +1,11 @@
 
 import java.util.List;
 
+import main.Ejercicio_01_insert.InsertBSTTest;
+import main.Ejercicio_02_invert.InvertBinaryTree;
 import main.Ejercicio_03_listLeves.ListLeves;
+import main.Ejercicio_04_depth.Depth;
+import main.Materia.Controllers.ArbolAVL;
 import main.Materia.Controllers.ArbolBinario;
 import main.Materia.Controllers.ArbolRecorridos;
 import main.Materia.Controllers.Models.Node;
@@ -34,10 +38,45 @@ public class App {
         } else {
             System.out.println("El árbol está vacío.");
         }
+        runArbolAVL();
 
-       
+        // Ejercicio 1
+        System.out.println("Ejercicio 01: Insertar en un BST");
+        InsertBSTTest bstTest = new InsertBSTTest();
+        //Node root = null;
+        int[] values = {5, 3, 7, 2, 4, 6, 8};
+        for (int value : values) {
+            root = bstTest.insert(root, value);
+        }
+        printTree(root);
+        System.out.println();
 
+        // Ejercicio 2
+        System.out.println("Ejercicio 02: Invertir un Árbol Binario");
+        InvertBinaryTree invertBinaryTree = new InvertBinaryTree();
+        root = invertBinaryTree.invertTree(root);
+        printTree(root);
+        System.out.println();
+
+        // Ejercicio 4
+        System.out.println("Ejercicio 04: Calcular Profundidad Máxima");
+        Depth depth = new Depth();
+        int maxDepth = depth.maxDepth(root);
+        System.out.println("La profundidad máxima del árbol es: " + maxDepth);
     }
+
+    private static void printTree(Node root) {
+        printTreeHelper(root, "", true);
+    }
+
+    private static void printTreeHelper(Node root, String prefix, boolean isLeft) {
+        if (root != null) {
+            System.out.println(prefix + (isLeft ? "├── " : "└── ") + root.value);
+            printTreeHelper(root.left, prefix + (isLeft ? "│   " : "    "), true);
+            printTreeHelper(root.right, prefix + (isLeft ? "│   " : "    "), false);
+        }
+    }
+
     public static void runArbolBinario(){
         ArbolBinario arbol = new ArbolBinario();
         ArbolRecorridos recorridos = new ArbolRecorridos();
@@ -57,11 +96,15 @@ public class App {
         recorridos.posOrdenRecursivo(arbol.getRoot());
         System.out.println("\nRecorrido InOrden");
         recorridos.inOrdenRecursivo(arbol.getRoot());
-        
+    }
 
+    public static void runArbolAVL() {
+        ArbolAVL avl = new ArbolAVL();
+        int[] valores = { 10, 20, 15, 24, 9, 8, 21, 23, 50, 25 };
 
-
-
+        for (int value : valores) {
+            avl.insert(value);
+        }
     }
 
 }
