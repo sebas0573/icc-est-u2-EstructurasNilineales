@@ -8,14 +8,16 @@ import main.Ejercicio_04_depth.Depth;
 import main.Materia.Controllers.ArbolAVL;
 import main.Materia.Controllers.ArbolBinario;
 import main.Materia.Controllers.ArbolRecorridos;
+import main.Materia.Controllers.Graph;
 import main.Materia.Controllers.Models.Node;
+import main.Materia.Controllers.Models.NodeGraph;
 
 public class App {
     public static void main(String[] args) throws Exception {
         //System.out.println("Hello, World!");
         //runArbolBinario();
 
-        Node root = new Node(7);
+        /*Node root = new Node(7);
         root.setLeft(new Node(5));
         root.setRight(new Node(4));
         root.getLeft().setLeft(new Node(8));
@@ -62,7 +64,30 @@ public class App {
         System.out.println("Ejercicio 04: Calcular Profundidad Máxima");
         Depth depth = new Depth();
         int maxDepth = depth.maxDepth(root);
-        System.out.println("La profundidad máxima del árbol es: " + maxDepth);
+        System.out.println("La profundidad máxima del árbol es: " + maxDepth);*/
+
+        runGraph();
+    }
+
+    private static void runGraph() {
+        Graph grafo = new Graph();
+        NodeGraph a =grafo.addNode(5);
+        NodeGraph b =grafo.addNode(7);
+        NodeGraph c =grafo.addNode(9);
+        NodeGraph d =grafo.addNode(11);
+        NodeGraph e =grafo.addNode(3);
+
+        
+        //grafo.printGraph();
+        
+        grafo.addEdge(a, b);
+        grafo.addEdge(a, c);
+        grafo.addEdge(c, e);
+        grafo.addEdge(d, e);
+
+
+        
+        grafo.printGraph();
     }
 
     private static void printTree(Node root) {
